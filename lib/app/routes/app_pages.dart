@@ -1,10 +1,12 @@
-import 'package:flutter_application_1/app/modules/home/views/home_view.dart';
-import 'package:flutter_application_1/app/modules/home/views/news/news_view.dart';
-import 'package:flutter_application_1/app/modules/home/views/register/register_view.dart';
-import 'package:flutter_application_1/app/modules/home/views/webview/news_webview.dart';
+import 'package:flutter_application_1/app/modules/views/home/home_menu.dart';
+import 'package:flutter_application_1/app/modules/views/home_view.dart';
+import 'package:flutter_application_1/app/modules/views/login/login_view.dart';
+import 'package:flutter_application_1/app/modules/views/news/news_view.dart';
+import 'package:flutter_application_1/app/modules/views/register/register_view.dart';
+import 'package:flutter_application_1/app/modules/views/webview/news_webview.dart';
 import 'package:get/get.dart';
 
-import '../modules/home/bindings/home_binding.dart';
+import '../modules/bindings/home_binding.dart';
 // import '../modules/home/views/home/home_component.dart';
 
 part 'app_routes.dart';
@@ -12,13 +14,16 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.HOME;
+  static const INITIAL = Routes.WELCOME;
 
   static final routes = [
     GetPage(
+        name: _Paths.WELCOME,
+        page: () => const HomeView(),
+        binding: HomeBinding()),
+    GetPage(
       name: _Paths.HOME,
-      page: () => const HomeView(),
-      binding: HomeBinding(),
+      page: () => const HomeMenu(),
     ),
     GetPage(
       name: _Paths.NEWS,
@@ -33,6 +38,10 @@ class AppPages {
     GetPage(
       name: _Paths.REGISTER,
       page: () => const RegisterScreen(),
+    ),
+    GetPage(
+      name: _Paths.LOGIN,
+      page: () => const LoginScreen(),
     ),
   ];
 }

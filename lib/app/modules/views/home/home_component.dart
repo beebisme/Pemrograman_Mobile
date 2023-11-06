@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/app/modules/home/views/appointment/web_view.dart';
-import 'package:flutter_application_1/app/modules/home/views/community/todo_view.dart';
-import 'package:flutter_application_1/app/modules/home/views/home/home_menu.dart';
-import 'package:flutter_application_1/app/modules/home/views/profile/profile_menu.dart';
-import 'package:flutter_application_1/app/modules/home/views/navigation/bottom_navigation.dart';
+import 'package:flutter_application_1/app/modules/views/appointment/web_view.dart';
+import 'package:flutter_application_1/app/modules/views/community/todo_view.dart';
+import 'package:flutter_application_1/app/modules/views/home/home_menu.dart';
+import 'package:flutter_application_1/app/modules/views/profile/profile_menu.dart';
+import 'package:flutter_application_1/app/modules/views/navigation/bottom_navigation.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});

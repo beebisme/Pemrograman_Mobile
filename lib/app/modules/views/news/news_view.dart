@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/app/modules/home/controllers/news_controller.dart';
-import 'package:flutter_application_1/app/modules/home/views/component/card_news_horizontal.dart';
+import 'package:flutter_application_1/app/modules/controllers/news_controller.dart';
+import 'package:flutter_application_1/app/modules/views/component/card_news_horizontal.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 

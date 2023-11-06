@@ -2,10 +2,11 @@
 
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/app/modules/home/controllers/edit_profile_controller.dart';
-import 'package:flutter_application_1/app/modules/home/views/profile/my_galery.dart';
-import 'package:flutter_application_1/app/modules/home/views/profile/update_profile_screen.dart';
-import 'package:flutter_application_1/app/modules/home/views/profile/widget/profile_content.dart';
+import 'package:flutter_application_1/app/modules/controllers/auth_controller.dart';
+import 'package:flutter_application_1/app/modules/controllers/edit_profile_controller.dart';
+import 'package:flutter_application_1/app/modules/views/profile/my_galery.dart';
+import 'package:flutter_application_1/app/modules/views/profile/update_profile_screen.dart';
+import 'package:flutter_application_1/app/modules/views/profile/widget/profile_content.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
@@ -16,6 +17,8 @@ class ProfileMenu extends StatelessWidget {
 
   EditProfileController editProfileController =
       Get.put(EditProfileController());
+
+  AuthController authController = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +42,7 @@ class ProfileMenu extends StatelessWidget {
         ),
         body: SingleChildScrollView(
             child: Container(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             children: [
               Stack(
@@ -103,14 +106,14 @@ class ProfileMenu extends StatelessWidget {
                       imagePath = newImagePath;
                     }
                   },
-                  child: Text(
-                    "Edit Profile",
-                    style: TextStyle(color: HexColor("#ffffff")),
-                  ),
                   style: ElevatedButton.styleFrom(
                       backgroundColor: HexColor("#5869ff"),
                       side: BorderSide.none,
                       shape: const StadiumBorder()),
+                  child: Text(
+                    "Edit Profile",
+                    style: TextStyle(color: HexColor("#ffffff")),
+                  ),
                 ),
               ),
               const SizedBox(
@@ -160,7 +163,9 @@ class ProfileMenu extends StatelessWidget {
                 icon: LineAwesomeIcons.alternate_sign_out,
                 textColor: Colors.red,
                 endIcon: false,
-                onPress: () {},
+                onPress: () {
+                  authController.logOut();
+                },
               ),
             ],
           ),

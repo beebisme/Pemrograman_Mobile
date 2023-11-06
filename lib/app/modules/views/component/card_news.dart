@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/app/modules/home/views/webview/news_webview.dart';
+import 'package:flutter_application_1/app/modules/views/webview/news_webview.dart';
 import 'package:get/get.dart';
 
 class CardNews extends StatelessWidget {

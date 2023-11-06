@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:flutter_application_1/app/modules/home/controllers/image_picker_controller.dart';
+import 'package:flutter_application_1/app/modules/controllers/image_picker_controller.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:image/image.dart' as img;
 

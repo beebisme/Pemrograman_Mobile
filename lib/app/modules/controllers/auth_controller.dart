@@ -2,8 +2,9 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/app/modules/home/views/home/home_component.dart';
-import 'package:flutter_application_1/app/modules/home/views/login/login_view.dart';
+import 'package:flutter_application_1/app/modules/views/home/home_component.dart';
+import 'package:flutter_application_1/app/modules/views/home_view.dart';
+import 'package:flutter_application_1/app/modules/views/login/login_view.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController {
@@ -29,11 +30,19 @@ class AuthController extends GetxController {
     try {
       isLoading.value = true;
       await _auth.signInWithEmailAndPassword(email: email, password: password);
-    } catch (e) {
-      Get.snackbar("Success", "Login Successfull");
+      Get.snackbar('Success', 'Login successful',
+          backgroundColor: Colors.green);
+      Get.to(() => const Home());
+    } catch (error) {
+      Get.snackbar('Error', 'Login failed: $error',
+          backgroundColor: Colors.red);
     } finally {
       isLoading.value = false;
-      Get.to(() => const Home());
     }
+  }
+
+  void logOut() async {
+    await _auth.signOut();
+    Get.offAll(const HomeView());
   }
 }

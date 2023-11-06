@@ -5,6 +5,7 @@ part of 'app_pages.dart';
 
 abstract class Routes {
   Routes._();
+  static const WELCOME = _Paths.WELCOME;
   static const HOME = _Paths.HOME;
   static const NEWS = _Paths.NEWS;
   static const NEWSWEBVIEW = _Paths.NEWSWEBVIEW;
@@ -14,6 +15,7 @@ abstract class Routes {
 
 abstract class _Paths {
   _Paths._();
+  static const WELCOME = '/welcome';
   static const HOME = '/home';
   static const NEWS = '/news';
   static const NEWSWEBVIEW = '/news-webview';

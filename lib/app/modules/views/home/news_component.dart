@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/app/modules/home/views/component/card_news.dart';
+import 'package:flutter_application_1/app/modules/views/component/card_news.dart';
 
 class NewsComponents extends StatelessWidget {
   const NewsComponents(

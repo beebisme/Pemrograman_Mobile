@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:flutter_application_1/app/modules/home/views/profile/my_galery.dart';
+import 'package:flutter_application_1/app/modules/views/profile/my_galery.dart';
 
 class ImageController extends GetxController {
   var imageList = <ImageModel>[].obs;
@@ -20,8 +20,8 @@ class ImageController extends GetxController {
   Future<void> pickImage(ImageSource source) async {
     final pickedFile = await ImagePicker().pickImage(source: source);
     if (pickedFile != null) {
-      final title = 'Image Title'; // Ganti dengan judul yang sesuai
-      final description =
+      const title = 'Image Title'; // Ganti dengan judul yang sesuai
+      const description =
           'Image Description'; // Ganti dengan deskripsi yang sesuai
       final imagePath = pickedFile.path;
       final newImage = ImageModel(

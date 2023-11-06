@@ -1,9 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/app/modules/home/views/component/button_primary.dart';
-import 'package:flutter_application_1/app/modules/home/views/home/home_component.dart';
-import 'package:flutter_application_1/app/modules/home/views/login/login_view.dart';
-import 'package:flutter_application_1/app/modules/home/views/register/register_view.dart';
+import 'package:flutter_application_1/app/modules/views/component/button_primary.dart';
+import 'package:flutter_application_1/app/modules/views/login/login_view.dart';
+import 'package:flutter_application_1/app/modules/views/register/register_view.dart';
 import 'package:get/get.dart';
 import '../controllers/home_controller.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -79,7 +80,7 @@ class HomeView extends GetView<HomeController> {
                                 style: linkStyle,
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
-                                    print('Terms of Service');
+                                    log('Terms of Service');
                                   }),
                           ],
                         ),

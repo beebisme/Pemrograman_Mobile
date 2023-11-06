@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/app/modules/home/controllers/auth_controller.dart';
+import 'package:flutter_application_1/app/modules/controllers/auth_controller.dart';
 import 'package:get/get.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _RegisterScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _RegisterScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   final AuthController _authController = Get.put(AuthController());
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -43,14 +43,14 @@ class _RegisterScreenState extends State<LoginScreen> {
                 onPressed: _authController.isLoading.value
                     ? null
                     : () {
-                        _authController.loginUser(
+                        _authController.register(
                           _emailController.text,
                           _passwordController.text,
                         );
                       },
                 child: _authController.isLoading.value
                     ? const CircularProgressIndicator()
-                    : const Text('Login'),
+                    : const Text('Register'),
               );
             }),
           ],

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/app/modules/home/views/component/card_news_skelton.dart';
+import 'package:flutter_application_1/app/modules/views/component/card_news_skelton.dart';
 
 class NewsSkeltonComponent extends StatelessWidget {
   const NewsSkeltonComponent({super.key});

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/app/modules/home/controllers/news_controller.dart';
-import 'package:flutter_application_1/app/modules/home/views/home/header_component.dart';
-import 'package:flutter_application_1/app/modules/home/views/home/menu_component.dart';
-import 'package:flutter_application_1/app/modules/home/views/home/news_component.dart';
-import 'package:flutter_application_1/app/modules/home/views/home/news_skelton_component.dart';
-import 'package:flutter_application_1/app/modules/home/views/news/news_view.dart';
+import 'package:flutter_application_1/app/modules/controllers/news_controller.dart';
+import 'package:flutter_application_1/app/modules/views/home/header_component.dart';
+import 'package:flutter_application_1/app/modules/views/home/menu_component.dart';
+import 'package:flutter_application_1/app/modules/views/home/news_component.dart';
+import 'package:flutter_application_1/app/modules/views/home/news_skelton_component.dart';
+import 'package:flutter_application_1/app/modules/views/news/news_view.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 

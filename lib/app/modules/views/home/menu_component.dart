@@ -71,7 +71,7 @@ class MenuComponent extends StatelessWidget {
             //     ),
             //   ),
             // ),
-            InkWell(
+            GestureDetector(
               onTap: () {
                 // To another page
               },
@@ -212,7 +212,7 @@ class MenuComponent extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            InkWell(
+            GestureDetector(
               onTap: () {
                 // To another page
               },
@@ -280,7 +280,7 @@ class MenuComponent extends StatelessWidget {
             const SizedBox(
               width: 20,
             ),
-            InkWell(
+            GestureDetector(
               onTap: () {
                 // To another page
               },

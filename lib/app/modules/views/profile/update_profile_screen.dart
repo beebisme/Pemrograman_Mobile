@@ -2,7 +2,7 @@
 
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/app/modules/home/controllers/edit_profile_controller.dart';
+import 'package:flutter_application_1/app/modules/controllers/edit_profile_controller.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:image_picker/image_picker.dart';
