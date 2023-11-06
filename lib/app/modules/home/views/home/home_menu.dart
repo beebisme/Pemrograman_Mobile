@@ -118,7 +118,7 @@ class HomeMenu extends StatelessWidget {
                         label: const Text(''),
                         style: ElevatedButton.styleFrom(
                           alignment: const Alignment(1, 0),
-                          padding: EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(10),
                           backgroundColor: HexColor("#5182F6"),
                           foregroundColor: Colors.white,
                           shape: RoundedRectangleBorder(

@@ -1,5 +1,6 @@
 import 'package:flutter_application_1/app/modules/home/views/home_view.dart';
 import 'package:flutter_application_1/app/modules/home/views/news/news_view.dart';
+import 'package:flutter_application_1/app/modules/home/views/register/register_view.dart';
 import 'package:flutter_application_1/app/modules/home/views/webview/news_webview.dart';
 import 'package:get/get.dart';
 
@@ -28,6 +29,10 @@ class AppPages {
       page: () => const NewsWebView(
         url: "https://www.youtube.com/",
       ),
+    ),
+    GetPage(
+      name: _Paths.REGISTER,
+      page: () => const RegisterScreen(),
     ),
   ];
 }

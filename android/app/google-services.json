@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "312190583960",
+    "project_id": "hospitalapp-2ae28",
+    "storage_bucket": "hospitalapp-2ae28.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:312190583960:android:b9dd8cf483b64c493fbced",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "312190583960-er8q60jb59tsqurpv6os8he5jfgckc9d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4Xbj6kx0cRCInpQjWqzrxNrE8rNxxKNM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "312190583960-er8q60jb59tsqurpv6os8he5jfgckc9d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
