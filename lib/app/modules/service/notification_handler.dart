@@ -38,7 +38,11 @@ class FirebaseMessagingHandler {
     });
     //handler terminated message
     FirebaseMessaging.instance.getInitialMessage().then((message) {
-      log("terminatedNotification : ${message!.notification?.title}");
+      if (message != null) {
+        if (message.notification != null) {
+          log("terminatedNotification : ${message.notification?.title}");
+        }
+      }
     });
     //handler onbackground message
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
