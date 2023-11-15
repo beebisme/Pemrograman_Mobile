@@ -4,16 +4,6 @@ import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
 
-/// Default [FirebaseOptions] for use with your Firebase apps.
-///
-/// Example:
-/// ```dart
-/// import 'firebase_options.dart';
-/// // ...
-/// await Firebase.initializeApp(
-///   options: DefaultFirebaseOptions.currentPlatform,
-/// );
-/// ```
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
@@ -67,7 +57,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '312190583960',
     projectId: 'hospitalapp-2ae28',
     storageBucket: 'hospitalapp-2ae28.appspot.com',
-    iosClientId: '312190583960-lldka090dq4bc5db35klna81u0c7s4l0.apps.googleusercontent.com',
+    iosClientId:
+        '312190583960-lldka090dq4bc5db35klna81u0c7s4l0.apps.googleusercontent.com',
     iosBundleId: 'com.example.flutterApplication1',
   );
 
@@ -77,7 +68,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '312190583960',
     projectId: 'hospitalapp-2ae28',
     storageBucket: 'hospitalapp-2ae28.appspot.com',
-    iosClientId: '312190583960-8110qdjc23n02befm3334udf3314gtu9.apps.googleusercontent.com',
+    iosClientId:
+        '312190583960-8110qdjc23n02befm3334udf3314gtu9.apps.googleusercontent.com',
     iosBundleId: 'com.example.flutterApplication1.RunnerTests',
   );
 }
