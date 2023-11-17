@@ -18,8 +18,10 @@ class AuthController extends GetxController {
         email: email,
         password: password,
       );
+      Get.snackbar('Success', 'Register successful',
+          backgroundColor: Colors.green);
     } catch (e) {
-      Get.snackbar("error", "Error : $e", backgroundColor: Colors.red);
+      Get.snackbar("Error", "Error : $e", backgroundColor: Colors.red);
     } finally {
       isLoading.value = false;
       Get.to(() => const LoginScreen());
