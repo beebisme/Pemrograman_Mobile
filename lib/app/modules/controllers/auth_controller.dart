@@ -2,9 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/app/modules/views/register_account/login_page.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthController extends GetxController {
@@ -32,7 +29,7 @@ class AuthController extends GetxController {
       );
       Get.snackbar('Success', 'Registration successful',
           backgroundColor: Colors.green);
-      Get.off(LoginPage()); //Navigate ke Login Page
+      Get.off(const LoginPage()); //Navigate ke Login Page
     } catch (error) {
       Get.snackbar('Error', 'Registration failed: $error',
           backgroundColor: Colors.red);
@@ -54,7 +51,7 @@ class AuthController extends GetxController {
           backgroundColor: Colors.green);
       isLoggedIn.value = true; // Set status login menjadi true
       Get.offAllNamed(
-          '/Home'); // Navigate ke HomePage dan hapus semua halaman sebelumnya
+          '/home'); // Navigate ke HomePage dan hapus semua halaman sebelumnya
     } catch (error) {
       Get.snackbar('Error', 'Login failed: $error',
           backgroundColor: Colors.red);
@@ -68,6 +65,6 @@ class AuthController extends GetxController {
     isLoggedIn.value = false; // Set status login menjadi false
     _auth.signOut(); // Sign out dari Firebase Authentication
     Get.offAllNamed(
-        '/Login'); // Navigate ke HomePage dan hapus semua halaman sebelumnya
+        '/welcome'); // Navigate ke HomePage dan hapus semua halaman sebelumnya
   }
 }

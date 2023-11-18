@@ -53,13 +53,13 @@ class HomeView extends GetView<HomeController> {
                       PrimaryButton(
                         'Login',
                         onPressed: () {
-                          Get.to(() => LoginPage());
+                          Get.toNamed("/login");
                         },
                       ),
                       PrimaryButton(
                         'Register',
                         onPressed: () {
-                          Get.to(() => RegisterPage());
+                          Get.toNamed("/register");
                         },
                       ),
                       const SizedBox(height: 10.0),

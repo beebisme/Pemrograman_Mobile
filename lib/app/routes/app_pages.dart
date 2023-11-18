@@ -1,3 +1,4 @@
+import 'package:flutter_application_1/app/modules/views/home/home_component.dart';
 import 'package:flutter_application_1/app/modules/views/home/home_menu.dart';
 import 'package:flutter_application_1/app/modules/views/home_view.dart';
 import 'package:flutter_application_1/app/modules/views/news/news_view.dart';
@@ -23,7 +24,7 @@ class AppPages {
         binding: HomeBinding()),
     GetPage(
       name: _Paths.HOME,
-      page: () => const HomeMenu(),
+      page: () => const Home(),
     ),
     GetPage(
       name: _Paths.NEWS,
@@ -37,11 +38,11 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.REGISTER,
-      page: () => RegisterPage(),
+      page: () => const RegisterPage(),
     ),
     GetPage(
       name: _Paths.LOGIN,
-      page: () => LoginPage(),
+      page: () => const LoginPage(),
     ),
   ];
 }
