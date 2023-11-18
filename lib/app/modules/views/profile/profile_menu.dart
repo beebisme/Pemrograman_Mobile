@@ -12,13 +12,12 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class ProfileMenu extends StatelessWidget {
+  final AuthController _authController = Get.put(AuthController());
   ProfileMenu({super.key});
   String? imagePath;
 
   EditProfileController editProfileController =
       Get.put(EditProfileController());
-
-  AuthController authController = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -164,7 +163,7 @@ class ProfileMenu extends StatelessWidget {
                 textColor: Colors.red,
                 endIcon: false,
                 onPress: () {
-                  authController.logOut();
+                  _authController.logout();
                 },
               ),
             ],

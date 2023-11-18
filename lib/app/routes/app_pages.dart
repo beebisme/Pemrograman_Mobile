@@ -1,8 +1,8 @@
 import 'package:flutter_application_1/app/modules/views/home/home_menu.dart';
 import 'package:flutter_application_1/app/modules/views/home_view.dart';
-import 'package:flutter_application_1/app/modules/views/login/login_view.dart';
 import 'package:flutter_application_1/app/modules/views/news/news_view.dart';
-import 'package:flutter_application_1/app/modules/views/register/register_view.dart';
+import 'package:flutter_application_1/app/modules/views/register_account/login_page.dart';
+import 'package:flutter_application_1/app/modules/views/register_account/register_page.dart';
 import 'package:flutter_application_1/app/modules/views/webview/news_webview.dart';
 import 'package:get/get.dart';
 
@@ -37,11 +37,11 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.REGISTER,
-      page: () => const RegisterScreen(),
+      page: () => RegisterPage(),
     ),
     GetPage(
       name: _Paths.LOGIN,
-      page: () => const LoginScreen(),
+      page: () => LoginPage(),
     ),
   ];
 }

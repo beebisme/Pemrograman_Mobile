@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/app/modules/controllers/auth_controller.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
-
+class LoginPage extends StatefulWidget {
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginPageState extends State<LoginPage> {
   final AuthController _authController = Get.put(AuthController());
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
   @override
   void dispose() {
     _emailController.dispose();
@@ -24,20 +22,25 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-          child: Padding(
-        padding: const EdgeInsets.all(10),
+      appBar: AppBar(
+        title: Text('Login'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             TextField(
               controller: _emailController,
-              decoration: const InputDecoration(labelText: "Email"),
+              decoration: InputDecoration(labelText: 'Email'),
             ),
             TextField(
               controller: _passwordController,
               obscureText: true,
-              decoration: const InputDecoration(labelText: 'Password'),
+              decoration: InputDecoration(labelText: 'Password'),
             ),
+            SizedBox(height: 16),
             Obx(() {
               return ElevatedButton(
                 onPressed: _authController.isLoading.value
@@ -49,13 +52,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         );
                       },
                 child: _authController.isLoading.value
-                    ? const CircularProgressIndicator()
-                    : const Text('Login'),
+                    ? CircularProgressIndicator()
+                    : Text('Login'),
               );
             }),
           ],
         ),
-      )),
+      ),
     );
   }
 }

@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/app/modules/views/component/button_primary.dart';
-import 'package:flutter_application_1/app/modules/views/login/login_view.dart';
-import 'package:flutter_application_1/app/modules/views/register/register_view.dart';
+import 'package:flutter_application_1/app/modules/views/register_account/login_page.dart';
+import 'package:flutter_application_1/app/modules/views/register_account/register_page.dart';
 import 'package:get/get.dart';
 import '../controllers/home_controller.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -53,13 +53,13 @@ class HomeView extends GetView<HomeController> {
                       PrimaryButton(
                         'Login',
                         onPressed: () {
-                          Get.to(() => const LoginScreen());
+                          Get.to(() => LoginPage());
                         },
                       ),
                       PrimaryButton(
                         'Register',
                         onPressed: () {
-                          Get.to(() => const RegisterScreen());
+                          Get.to(() => RegisterPage());
                         },
                       ),
                       const SizedBox(height: 10.0),
