@@ -14,8 +14,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Get.putAsync(() async => await SharedPreferences.getInstance());
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Get.putAsync(() async => await SharedPreferences
+      .getInstance()); // menyimpan data secara persisten pada perangkat
+  await Firebase.initializeApp(
+      options: DefaultFirebaseOptions
+          .currentPlatform); // menginisialisasi firebas pada aplikasi
 
   final AuthController _authController =
       Get.put(AuthController()); // Buat instance AuthController
@@ -31,7 +34,7 @@ void main() async {
       initialRoute: _authController.isLoggedIn.value
           ? '/home'
           : '/welcome', // Set initial route based onlogin status
-      getPages: AppPages.routes,
+      getPages: AppPages.routes, // daftar route yang didefinisikan di AppPages
       // getPages: [
       //   GetPage(name: '/Login', page: () => const LoginPage()),
       //   GetPage(name: '/Home', page: () => const Home()),
