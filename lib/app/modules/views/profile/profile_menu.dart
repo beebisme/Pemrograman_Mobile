@@ -163,7 +163,7 @@ class ProfileMenu extends StatelessWidget {
                 textColor: Colors.red,
                 endIcon: false,
                 onPress: () {
-                  _authController.deleteSession();
+                  _authController.logout();
                 },
               ),
             ],

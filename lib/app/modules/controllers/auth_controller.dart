@@ -31,7 +31,7 @@ class AuthController extends GetxController {
   }
 
   // Appwrite Auth
-  Future<void> createUser(String userEmail, String userPassword) async {
+  Future<void> register(String userEmail, String userPassword) async {
     try {
       isLoading.value = true;
       await account.create(
@@ -51,7 +51,7 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> createSession(String userEmail, String userPassword) async {
+  Future<void> login(String userEmail, String userPassword) async {
     try {
       isLoading.value = true;
       await account.createEmailSession(
@@ -71,7 +71,7 @@ class AuthController extends GetxController {
     }
   }
 
-  void deleteSession() {
+  void logout() {
     _prefs.remove('user_token'); // Hapus token autentikasi dari penyimpanan
     isLoggedIn.value = false; // Set status login menjadi false
     account.deleteSessions();

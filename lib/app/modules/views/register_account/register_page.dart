@@ -12,7 +12,6 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final AuthController _authController = Get.put(AuthController());
-  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -25,6 +24,13 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
+    bool isValidEmail(String value) {
+      // Validasi apakah value merupakan alamat email yang benar
+      final emailPattern =
+          RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$');
+      return emailPattern.hasMatch(value);
+    }
+
     return Scaffold(
       // appBar: AppBar(
       //   title: const Text('Register'),
@@ -44,15 +50,25 @@ class _RegisterPageState extends State<RegisterPage> {
                     image: DecorationImage(
                         image: AssetImage("assets/images/doctor.png"))),
               ),
-              TextField(
-                controller: _nameController,
-                decoration: const InputDecoration(labelText: 'Nama'),
-              ),
-              TextField(
+              TextFormField(
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Email tidak boleh kosong';
+                  } else if (!isValidEmail(value)) {
+                    return 'Masukkan alamat email yang valid';
+                  }
+                  return null;
+                },
                 controller: _emailController,
                 decoration: const InputDecoration(labelText: 'Email'),
               ),
-              TextField(
+              TextFormField(
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Password cannot be empty';
+                    }
+                    return null;
+                  },
                   controller: _passwordController,
                   obscureText: true,
                   decoration: const InputDecoration(
@@ -64,7 +80,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   onTap: _authController.isLoading.value
                       ? null
                       : () {
-                          _authController.createUser(
+                          _authController.register(
                             _emailController.text,
                             _passwordController.text,
                           );
