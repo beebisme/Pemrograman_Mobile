@@ -41,7 +41,7 @@ class UpdateProfileScreen extends StatelessWidget {
         ),
         body: SingleChildScrollView(
             child: Container(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             children: [
               Stack(

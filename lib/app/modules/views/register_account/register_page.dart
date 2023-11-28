@@ -12,6 +12,7 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final AuthController _authController = Get.put(AuthController());
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -44,6 +45,10 @@ class _RegisterPageState extends State<RegisterPage> {
                         image: AssetImage("assets/images/doctor.png"))),
               ),
               TextField(
+                controller: _nameController,
+                decoration: const InputDecoration(labelText: 'Nama'),
+              ),
+              TextField(
                 controller: _emailController,
                 decoration: const InputDecoration(labelText: 'Email'),
               ),
@@ -59,7 +64,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   onTap: _authController.isLoading.value
                       ? null
                       : () {
-                          _authController.registerUser(
+                          _authController.createUser(
                             _emailController.text,
                             _passwordController.text,
                           );

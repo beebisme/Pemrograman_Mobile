@@ -59,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
                   onTap: _authController.isLoading.value
                       ? null
                       : () {
-                          _authController.loginUser(
+                          _authController.createSession(
                             _emailController.text,
                             _passwordController.text,
                           );
