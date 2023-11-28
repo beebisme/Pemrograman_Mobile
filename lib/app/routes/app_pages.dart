@@ -1,5 +1,4 @@
 import 'package:flutter_application_1/app/modules/views/home/home_component.dart';
-import 'package:flutter_application_1/app/modules/views/home/home_menu.dart';
 import 'package:flutter_application_1/app/modules/views/home_view.dart';
 import 'package:flutter_application_1/app/modules/views/news/news_view.dart';
 import 'package:flutter_application_1/app/modules/views/register_account/login_page.dart';

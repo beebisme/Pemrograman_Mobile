@@ -3,8 +3,6 @@ import 'dart:developer';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/app/modules/views/component/button_primary.dart';
-import 'package:flutter_application_1/app/modules/views/register_account/login_page.dart';
-import 'package:flutter_application_1/app/modules/views/register_account/register_page.dart';
 import 'package:get/get.dart';
 import '../controllers/home_controller.dart';
 import 'package:hexcolor/hexcolor.dart';

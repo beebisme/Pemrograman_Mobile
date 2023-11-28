@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/app/modules/controllers/auth_controller.dart';
 import 'package:flutter_application_1/app/modules/controllers/database_controller.dart';
 import 'package:flutter_application_1/app/modules/controllers/news_controller.dart';
 import 'package:flutter_application_1/app/modules/views/home/header_component.dart';
