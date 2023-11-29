@@ -12,14 +12,14 @@ class StorageController extends ClientController {
     storage = Storage(client);
   }
 
-  Future storeImage() async {
+  Future storeImage(String imgPath, String imgName) async {
     try {
       final result = await storage!.createFile(
-        bucketId: '[6561b7c8431a2005761b]',
+        bucketId: '6566c841487a3f65533c',
         fileId: ID.unique(),
         file: InputFile.fromPath(
-          path: './path-to-files/image.jpg',
-          filename: 'image.jpg',
+          path: imgPath,
+          filename: imgName,
         ),
       );
       print("StorageController:: storeImage $result");

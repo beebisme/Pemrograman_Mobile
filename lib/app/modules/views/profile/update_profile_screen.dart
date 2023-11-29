@@ -3,6 +3,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/app/modules/controllers/edit_profile_controller.dart';
+import 'package:flutter_application_1/app/modules/controllers/storage_controller.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:image_picker/image_picker.dart';
@@ -13,6 +14,7 @@ class UpdateProfileScreen extends StatelessWidget {
   ImagePicker imagePicker = ImagePicker();
 
   EditProfileController editProfileController = Get.find();
+  StorageController storageController = Get.put(StorageController());
 
   UpdateProfileScreen({Key? key}) : super(key: key);
 
@@ -41,7 +43,7 @@ class UpdateProfileScreen extends StatelessWidget {
         ),
         body: SingleChildScrollView(
             child: Container(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             children: [
               Stack(
@@ -200,10 +202,14 @@ class UpdateProfileScreen extends StatelessWidget {
                         width: double.infinity,
                         height: 50,
                         child: ElevatedButton(
-                            onPressed: () => {
-                                  if (formKey.currentState!.validate())
-                                    {Get.to(UpdateProfileScreen())}
-                                },
+                            onPressed: () {
+                              if (formKey.currentState!.validate()) {
+                                storageController.storeImage(
+                                    editProfileController.imgPath,
+                                    editProfileController.imgName);
+                                Get.to(UpdateProfileScreen());
+                              }
+                            },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: HexColor('#5869ff'),
                                 side: BorderSide.none,
@@ -299,7 +305,8 @@ class UpdateProfileScreen extends StatelessWidget {
         await imagePicker.pickImage(source: source, imageQuality: 100);
 
     pickedFile = File(pickedImage!.path);
-    editProfileController.setProfileImagePath(pickedFile!.path);
+    editProfileController.setProfileImagePath(
+        pickedFile!.path, pickedImage.name);
     Get.back(result: pickedFile!.path);
   }
 }
