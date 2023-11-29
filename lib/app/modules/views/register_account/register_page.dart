@@ -137,21 +137,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   )
                 ],
               )
-              // Obx(() {
-              //   return ElevatedButton(
-              //     onPressed: _authController.isLoading.value
-              //         ? null
-              //         : () {
-              //             _authController.registerUser(
-              //               _emailController.text,
-              //               _passwordController.text,
-              //             );
-              //           },
-              //     child: _authController.isLoading.value
-              //         ? CircularProgressIndicator()
-              //         : Text('Register'),
-              //   );
-              // }),
             ],
           ),
         ),

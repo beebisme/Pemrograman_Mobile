@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/app/modules/views/component/button_primary.dart';
-import 'package:flutter_application_1/app/modules/views/register_account/login_page.dart';
-import 'package:flutter_application_1/app/modules/views/register_account/register_page.dart';
+import 'package:flutter_application_1/app/modules/views/registerVia_appwrite/create_account.dart';
+import 'package:flutter_application_1/app/modules/views/registerVia_appwrite/login_account_appwrite.dart';
 import 'package:get/get.dart';
 import '../controllers/home_controller.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -52,14 +52,20 @@ class HomeView extends GetView<HomeController> {
                     children: [
                       PrimaryButton(
                         'Login',
+                        // onPressed: () {
+                        //   Get.toNamed("/login");
+                        // },
                         onPressed: () {
-                          Get.toNamed("/login");
+                          Get.to(() => LoginEmailSessionScreen());
                         },
                       ),
                       PrimaryButton(
                         'Register',
+                        //   onPressed: () {
+                        //     Get.toNamed("/register");
+                        //   },
                         onPressed: () {
-                          Get.toNamed("/register");
+                          Get.to(() => CreateAccountScreen());
                         },
                       ),
                       const SizedBox(height: 10.0),

@@ -137,21 +137,6 @@ class _LoginPageState extends State<LoginPage> {
                   )
                 ],
               ),
-              // Obx(() {
-              //   return ElevatedButton(
-              //     onPressed: _authController.isLoading.value
-              //         ? null
-              //         : () {
-              //             _authController.loginUser(
-              //               _emailController.text,
-              //               _passwordController.text,
-              //             );
-              //           },
-              //     child: _authController.isLoading.value
-              //         ? const CircularProgressIndicator()
-              //         : const Text('Login'),
-              //   );
-              // }),
             ],
           ),
         ),
