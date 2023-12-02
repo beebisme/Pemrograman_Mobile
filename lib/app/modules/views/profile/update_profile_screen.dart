@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/app/data/models/user_data.dart';
 import 'package:flutter_application_1/app/modules/controllers/database_controller.dart';
 import 'package:flutter_application_1/app/modules/controllers/edit_profile_controller.dart';
 
@@ -15,6 +16,10 @@ class UpdateProfileScreen extends StatelessWidget {
 
   EditProfileController editProfileController = Get.find();
   final DatabaseController databaseController = Get.put(DatabaseController());
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   UpdateProfileScreen({Key? key}) : super(key: key);
 
@@ -28,6 +33,10 @@ class UpdateProfileScreen extends StatelessWidget {
     }
 
     final formKey = GlobalKey<FormState>();
+    _nameController.text = databaseController.datax.value.name ?? '';
+    _emailController.text = databaseController.datax.value.email ?? '';
+    _phoneController.text = databaseController.datax.value.phone ?? '';
+    _passwordController.text = databaseController.datax.value.password ?? '';
 
     return Scaffold(
         appBar: AppBar(
@@ -94,6 +103,7 @@ class UpdateProfileScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       TextFormField(
+                        controller: _nameController,
                         initialValue: databaseController.datax.value.name ?? '',
                         decoration: InputDecoration(
                           label: const Text("Full Name"),
@@ -124,6 +134,7 @@ class UpdateProfileScreen extends StatelessWidget {
                         height: 20,
                       ),
                       TextFormField(
+                        controller: _emailController,
                         initialValue:
                             databaseController.datax.value.email ?? '',
                         decoration: InputDecoration(
@@ -154,6 +165,7 @@ class UpdateProfileScreen extends StatelessWidget {
                         height: 20,
                       ),
                       TextFormField(
+                        controller: _phoneController,
                         initialValue:
                             databaseController.datax.value.phone ?? '',
                         decoration: InputDecoration(
@@ -181,6 +193,7 @@ class UpdateProfileScreen extends StatelessWidget {
                         height: 20,
                       ),
                       TextFormField(
+                        controller: _passwordController,
                         initialValue:
                             databaseController.datax.value.password ?? '',
                         decoration: InputDecoration(
@@ -214,10 +227,33 @@ class UpdateProfileScreen extends StatelessWidget {
                         width: double.infinity,
                         height: 50,
                         child: ElevatedButton(
-                            onPressed: () => {
-                                  if (formKey.currentState!.validate())
-                                    {Get.to(UpdateProfileScreen())}
-                                },
+                            onPressed: () async {
+                              if (formKey.currentState!.validate()) {
+                                // Buat objek UserData dari input form
+                                UserData userData = UserData(
+                                  name: _nameController.text,
+                                  email: _emailController.text,
+                                  phone: _phoneController.text,
+                                  password: _passwordController.text,
+                                );
+
+                                try {
+                                  // Panggil fungsi createData dari DatabaseController
+                                  await databaseController.createData(userData);
+
+                                  // Navigasi ke halaman lain atau lakukan tindakan lainnya
+                                  // Contoh: kembali ke halaman sebelumnya
+                                  Get.back();
+                                } catch (error) {
+                                  // Tangani kesalahan jika ada
+                                  Get.snackbar('Error',
+                                      'Failed to update profile: $error');
+                                }
+                              }
+                              // if (formKey.currentState!.validate())
+                              //   {Get.to(UpdateProfileScreen())
+                              //   }
+                            },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: HexColor('#5869ff'),
                                 side: BorderSide.none,
