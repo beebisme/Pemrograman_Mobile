@@ -46,6 +46,7 @@ class AccountController extends ClientController {
         password: map['password'],
       );
       print("AccountController:: createEmailSession $result");
+
       Get.to(() => const Home());
     } catch (error) {
       Get.defaultDialog(
