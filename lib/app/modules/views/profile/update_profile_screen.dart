@@ -1,9 +1,9 @@
-// ignore_for_file: must_be_immutable
-
 import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/app/modules/controllers/database_controller.dart';
 import 'package:flutter_application_1/app/modules/controllers/edit_profile_controller.dart';
-import 'package:flutter_application_1/app/modules/controllers/storage_controller.dart';
+
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:image_picker/image_picker.dart';
@@ -14,7 +14,7 @@ class UpdateProfileScreen extends StatelessWidget {
   ImagePicker imagePicker = ImagePicker();
 
   EditProfileController editProfileController = Get.find();
-  StorageController storageController = Get.put(StorageController());
+  final DatabaseController databaseController = Get.put(DatabaseController());
 
   UpdateProfileScreen({Key? key}) : super(key: key);
 
@@ -43,7 +43,7 @@ class UpdateProfileScreen extends StatelessWidget {
         ),
         body: SingleChildScrollView(
             child: Container(
-          padding: const EdgeInsets.all(20),
+          padding: EdgeInsets.all(20),
           child: Column(
             children: [
               Stack(
@@ -94,19 +94,25 @@ class UpdateProfileScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       TextFormField(
+                        initialValue: databaseController.datax.value.name ?? '',
                         decoration: InputDecoration(
-                            label: const Text("Full Name"),
-                            prefixIcon: const Icon(LineAwesomeIcons.user),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(100)),
-                            prefixIconColor: HexColor('#5869ff'),
-                            floatingLabelStyle: TextStyle(
+                          label: const Text("Full Name"),
+                          prefixIcon: const Icon(LineAwesomeIcons.user),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(100),
+                          ),
+                          prefixIconColor: HexColor('#5869ff'),
+                          floatingLabelStyle: TextStyle(
+                            color: HexColor('#5869ff'),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(100),
+                            borderSide: BorderSide(
+                              width: 1,
                               color: HexColor('#5869ff'),
                             ),
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(100),
-                                borderSide: BorderSide(
-                                    width: 1, color: HexColor('#5869ff')))),
+                          ),
+                        ),
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Full Name tidak boleh kosong';
@@ -118,6 +124,8 @@ class UpdateProfileScreen extends StatelessWidget {
                         height: 20,
                       ),
                       TextFormField(
+                        initialValue:
+                            databaseController.datax.value.email ?? '',
                         decoration: InputDecoration(
                             label: const Text("Email"),
                             prefixIcon: const Icon(LineAwesomeIcons.envelope_1),
@@ -146,6 +154,8 @@ class UpdateProfileScreen extends StatelessWidget {
                         height: 20,
                       ),
                       TextFormField(
+                        initialValue:
+                            databaseController.datax.value.phone ?? '',
                         decoration: InputDecoration(
                             label: const Text("Phone"),
                             prefixIcon: const Icon(LineAwesomeIcons.phone),
@@ -171,6 +181,8 @@ class UpdateProfileScreen extends StatelessWidget {
                         height: 20,
                       ),
                       TextFormField(
+                        initialValue:
+                            databaseController.datax.value.password ?? '',
                         decoration: InputDecoration(
                             label: const Text("Password"),
                             prefixIcon:
@@ -202,14 +214,10 @@ class UpdateProfileScreen extends StatelessWidget {
                         width: double.infinity,
                         height: 50,
                         child: ElevatedButton(
-                            onPressed: () {
-                              if (formKey.currentState!.validate()) {
-                                storageController.storeImage(
-                                    editProfileController.imgPath,
-                                    editProfileController.imgName);
-                                Get.to(UpdateProfileScreen());
-                              }
-                            },
+                            onPressed: () => {
+                                  if (formKey.currentState!.validate())
+                                    {Get.to(UpdateProfileScreen())}
+                                },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: HexColor('#5869ff'),
                                 side: BorderSide.none,
@@ -221,7 +229,7 @@ class UpdateProfileScreen extends StatelessWidget {
                             )),
                       )
                     ],
-                  ))
+                  )),
             ],
           ),
         )));

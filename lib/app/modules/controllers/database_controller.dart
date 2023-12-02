@@ -1,15 +1,18 @@
 import 'package:appwrite/appwrite.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_application_1/app/data/models/user_data.dart';
 import 'package:flutter_application_1/app/modules/controllers/client_controller.dart';
 import 'package:get/get.dart';
 
 class DatabaseController extends ClientController {
   Databases? databases;
+  Rx<UserData> datax = UserData().obs;
   @override
   void onInit() {
     super.onInit();
 // appwrite
     databases = Databases(client);
+    readData('user123');
   }
 
   Future storeUserName(Map map) async {
@@ -17,12 +20,12 @@ class DatabaseController extends ClientController {
       final result = await databases!.createDocument(
         databaseId: "6561d15ee70e330ee9fc",
         documentId: ID.unique(),
-        collectionId: "6561d1776e8d86f3cbb7",
+        collectionId: "6566ba720a806cf878ad",
         data: map,
         permissions: [
-          Permission.read(Role.user("6561d2d3ea9834d10f2a")),
-          Permission.update(Role.user("6561d2d3ea9834d10f2a")),
-          Permission.delete(Role.user("6561d2d3ea9834d10f2a")),
+          Permission.read(Role.user("user123")),
+          Permission.update(Role.user("user123")),
+          Permission.delete(Role.user("user123")),
         ],
       );
       print("DatabaseController:: storeUserName $databases");
@@ -40,4 +43,110 @@ class DatabaseController extends ClientController {
       );
     }
   }
+
+  Future<void> createData(Map<String, dynamic> data) async {
+    try {
+      if (databases != null) {
+        final DocumentResponse result = (await databases!.createDocument(
+          databaseId: "6561d15ee70e330ee9fc",
+          collectionId: "6566ba720a806cf878ad",
+          documentId: ID.unique(),
+          data: data,
+          permissions: [
+            Permission.read(Role.user("user123")),
+            Permission.update(Role.user("user123")),
+          ],
+        )) as DocumentResponse;
+
+        if (result.statusCode == 201) {
+          Get.snackbar('Success', 'Data created successfully');
+        } else {
+          Get.snackbar('Error', 'Failed to create data: ${result.body}');
+        }
+      } else {
+        Get.snackbar('Error', 'Databases is null');
+      }
+    } catch (error) {
+      Get.snackbar('Error', 'An error occurred: $error');
+    }
+  }
+
+  Future<void> readData(String documentId) async {
+    try {
+      if (databases != null) {
+        final result = await databases!.getDocument(
+          databaseId: "6561d15ee70e330ee9fc",
+          collectionId: "6566ba720a806cf878ad",
+          documentId: documentId,
+        );
+
+        // if (result == 200) {
+        Get.snackbar('Success', 'Data retrieved successfully');
+        // data.value = result.data.toString();
+        UserData userData = UserData.fromJson(result.data);
+        datax.value = userData;
+        // Handle retrieved data (result.data)
+        // } else {
+        //   Get.snackbar('Error', 'Failed to retrieve data: ${result}');
+        // }
+      } else {
+        Get.snackbar('Error', 'Databases is null');
+      }
+    } catch (error) {
+      Get.snackbar('Error', 'An error occurred: $error');
+    }
+  }
+
+  Future<void> updateData(
+      String documentId, Map<String, dynamic> newData) async {
+    try {
+      if (databases != null) {
+        final result = await databases!.updateDocument(
+          databaseId: "6561d15ee70e330ee9fc",
+          collectionId: "6566ba720a806cf878ad",
+          documentId: documentId,
+          data: newData,
+        );
+
+        if (result == 200) {
+          Get.snackbar('Success', 'Data updated successfully');
+        } else {
+          Get.snackbar('Error', 'Failed to update data: ${result}');
+        }
+      } else {
+        Get.snackbar('Error', 'Databases is null');
+      }
+    } catch (error) {
+      Get.snackbar('Error', 'An error occurred: $error');
+    }
+  }
+
+  Future<void> deleteData(String documentId) async {
+    try {
+      if (databases != null) {
+        final result = await databases!.deleteDocument(
+          databaseId: "6561d15ee70e330ee9fc",
+          collectionId: "6566ba720a806cf878ad",
+          documentId: documentId,
+        );
+
+        if (result.statusCode == 200) {
+          Get.snackbar('Success', 'Data deleted successfully');
+        } else {
+          Get.snackbar('Error', 'Failed to delete data: ${result.body}');
+        }
+      } else {
+        Get.snackbar('Error', 'Databases is null');
+      }
+    } catch (error) {
+      Get.snackbar('Error', 'An error occurred: $error');
+    }
+  }
+}
+
+class DocumentResponse {
+  late int statusCode;
+  late Map<String, dynamic> body;
+
+  DocumentResponse({required this.statusCode, required this.body});
 }
