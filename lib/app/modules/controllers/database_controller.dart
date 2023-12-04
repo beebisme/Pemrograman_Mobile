@@ -1,4 +1,5 @@
 import 'package:appwrite/appwrite.dart';
+import 'package:appwrite/models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/app/data/models/user_data.dart';
 import 'package:flutter_application_1/app/modules/controllers/client_controller.dart';
@@ -44,30 +45,38 @@ class DatabaseController extends ClientController {
     }
   }
 
-  Future<void> createData(Map<String, dynamic> data) async {
+  Future<void> createData(UserData userData) async {
     try {
       if (databases != null) {
-        final DocumentResponse result = (await databases!.createDocument(
-          databaseId: "6561d15ee70e330ee9fc",
-          collectionId: "6566ba720a806cf878ad",
+        final Map<String, dynamic> data = {
+          'name': userData.name,
+          'email': userData.email,
+          'phone': userData.phone,
+          'password': userData.password,
+          // Tambahkan field lain sesuai kebutuhan
+        };
+
+        final Document result = await databases!.createDocument(
+          databaseId: '6561d15ee70e330ee9fc',
+          collectionId: '6566ba720a806cf878ad',
           documentId: ID.unique(),
           data: data,
           permissions: [
-            Permission.read(Role.user("user123")),
-            Permission.update(Role.user("user123")),
+            Permission.read(Role.user('user123')),
+            Permission.write(Role.user('user123')),
           ],
-        )) as DocumentResponse;
+        );
 
-        if (result.statusCode == 201) {
-          Get.snackbar('Success', 'Data created successfully');
+        if (result != null) {
+          Get.snackbar('Berhasil', 'Data berhasil dibuat');
         } else {
-          Get.snackbar('Error', 'Failed to create data: ${result.body}');
+          Get.snackbar('Error', 'Gagal membuat data');
         }
       } else {
-        Get.snackbar('Error', 'Databases is null');
+        Get.snackbar('Error', 'Databases kosong');
       }
     } catch (error) {
-      Get.snackbar('Error', 'An error occurred: $error');
+      Get.snackbar('Error', 'Terjadi kesalahan: $error');
     }
   }
 

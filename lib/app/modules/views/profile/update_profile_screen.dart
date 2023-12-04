@@ -104,7 +104,6 @@ class UpdateProfileScreen extends StatelessWidget {
                     children: [
                       TextFormField(
                         controller: _nameController,
-                        initialValue: databaseController.datax.value.name ?? '',
                         decoration: InputDecoration(
                           label: const Text("Full Name"),
                           prefixIcon: const Icon(LineAwesomeIcons.user),
@@ -135,8 +134,6 @@ class UpdateProfileScreen extends StatelessWidget {
                       ),
                       TextFormField(
                         controller: _emailController,
-                        initialValue:
-                            databaseController.datax.value.email ?? '',
                         decoration: InputDecoration(
                             label: const Text("Email"),
                             prefixIcon: const Icon(LineAwesomeIcons.envelope_1),
@@ -166,8 +163,6 @@ class UpdateProfileScreen extends StatelessWidget {
                       ),
                       TextFormField(
                         controller: _phoneController,
-                        initialValue:
-                            databaseController.datax.value.phone ?? '',
                         decoration: InputDecoration(
                             label: const Text("Phone"),
                             prefixIcon: const Icon(LineAwesomeIcons.phone),
@@ -194,8 +189,7 @@ class UpdateProfileScreen extends StatelessWidget {
                       ),
                       TextFormField(
                         controller: _passwordController,
-                        initialValue:
-                            databaseController.datax.value.password ?? '',
+
                         decoration: InputDecoration(
                             label: const Text("Password"),
                             prefixIcon:
