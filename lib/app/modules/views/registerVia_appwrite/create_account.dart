@@ -6,7 +6,6 @@ class CreateAccountScreen extends StatelessWidget {
   final AccountController accountController =
       Get.find(); // Pastikan controller telah diinisialisasi
 
-  final TextEditingController userIdController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
@@ -22,11 +21,6 @@ class CreateAccountScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextField(
-              controller: userIdController,
-              decoration: InputDecoration(labelText: 'User ID'),
-            ),
-            SizedBox(height: 10),
             TextField(
               controller: emailController,
               decoration: InputDecoration(labelText: 'Email'),
@@ -57,7 +51,6 @@ class CreateAccountScreen extends StatelessWidget {
 
   void _createAccount() async {
     Map<String, dynamic> userMap = {
-      'userId': userIdController.text,
       'email': emailController.text,
       'password': passwordController.text,
       'name': nameController.text,

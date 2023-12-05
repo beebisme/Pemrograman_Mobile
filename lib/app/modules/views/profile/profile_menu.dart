@@ -2,7 +2,7 @@
 
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/app/modules/controllers/auth_controller.dart';
+import 'package:flutter_application_1/app/modules/controllers/account_controller.dart';
 import 'package:flutter_application_1/app/modules/controllers/edit_profile_controller.dart';
 import 'package:flutter_application_1/app/modules/views/profile/my_galery.dart';
 import 'package:flutter_application_1/app/modules/views/profile/update_profile_screen.dart';
@@ -12,7 +12,8 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class ProfileMenu extends StatelessWidget {
-  final AuthController _authController = Get.put(AuthController());
+  // final AuthController _authController = Get.put(AuthController());
+  final AccountController accountController = Get.put(AccountController());
   ProfileMenu({super.key});
   String? imagePath;
 
@@ -163,7 +164,8 @@ class ProfileMenu extends StatelessWidget {
                 textColor: Colors.red,
                 endIcon: false,
                 onPress: () {
-                  _authController.logout();
+                  // _authController.logout();
+                  accountController.deleteSession();
                 },
               ),
             ],

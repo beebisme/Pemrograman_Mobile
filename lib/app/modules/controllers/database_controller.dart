@@ -1,8 +1,10 @@
+import 'dart:developer';
+
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_application_1/app/data/models/user_data.dart';
 import 'package:flutter_application_1/app/modules/controllers/client_controller.dart';
+import 'package:flutter_application_1/app/modules/views/profile/profile_menu.dart';
 import 'package:get/get.dart';
 
 class DatabaseController extends ClientController {
@@ -13,39 +15,11 @@ class DatabaseController extends ClientController {
     super.onInit();
 // appwrite
     databases = Databases(client);
-    readData('user123');
   }
 
-  Future storeUserName(Map map) async {
-    try {
-      final result = await databases!.createDocument(
-        databaseId: "6561d15ee70e330ee9fc",
-        documentId: ID.unique(),
-        collectionId: "6566ba720a806cf878ad",
-        data: map,
-        permissions: [
-          Permission.read(Role.user("user123")),
-          Permission.update(Role.user("user123")),
-          Permission.delete(Role.user("user123")),
-        ],
-      );
-      print("DatabaseController:: storeUserName $databases");
-    } catch (error) {
-      Get.defaultDialog(
-        title: "Error Database",
-        titlePadding: const EdgeInsets.only(top: 15, bottom: 5),
-        titleStyle: Get.context?.theme.textTheme.titleLarge,
-        content: Text(
-          "$error",
-          style: Get.context?.theme.textTheme.bodyMedium,
-          textAlign: TextAlign.center,
-        ),
-        contentPadding: const EdgeInsets.only(top: 5, left: 15, right: 15),
-      );
-    }
-  }
+  Future<void> createData(UserData userData, Future userId) async {
+    final documentId = await userId;
 
-  Future<void> createData(UserData userData) async {
     try {
       if (databases != null) {
         final Map<String, dynamic> data = {
@@ -59,12 +33,8 @@ class DatabaseController extends ClientController {
         final Document result = await databases!.createDocument(
           databaseId: '6561d15ee70e330ee9fc',
           collectionId: '6566ba720a806cf878ad',
-          documentId: ID.unique(),
+          documentId: documentId,
           data: data,
-          permissions: [
-            Permission.read(Role.user('user123')),
-            Permission.write(Role.user('user123')),
-          ],
         );
 
         if (result != null) {
@@ -80,7 +50,9 @@ class DatabaseController extends ClientController {
     }
   }
 
-  Future<void> readData(String documentId) async {
+  Future<void> readData(Future userId) async {
+    final documentId = await userId;
+
     try {
       if (databases != null) {
         final result = await databases!.getDocument(
@@ -102,35 +74,39 @@ class DatabaseController extends ClientController {
         Get.snackbar('Error', 'Databases is null');
       }
     } catch (error) {
-      Get.snackbar('Error', 'An error occurred: $error');
+      // Get.snackbar('Error', 'An error occurred: $error');
+      log(error.toString());
     }
   }
 
-  Future<void> updateData(
-      String documentId, Map<String, dynamic> newData) async {
-    try {
-      if (databases != null) {
-        final result = await databases!.updateDocument(
-          databaseId: "6561d15ee70e330ee9fc",
-          collectionId: "6566ba720a806cf878ad",
-          documentId: documentId,
-          data: newData,
-        );
+  Future<void> updateData(Future userId, UserData userData) async {
+    final documentId = await userId;
 
-        if (result == 200) {
-          Get.snackbar('Success', 'Data updated successfully');
-        } else {
-          Get.snackbar('Error', 'Failed to update data: ${result}');
-        }
-      } else {
-        Get.snackbar('Error', 'Databases is null');
-      }
+    try {
+      final Map<String, dynamic> newData = {
+        'name': userData.name,
+        'email': userData.email,
+        'phone': userData.phone,
+        'password': userData.password,
+        // Tambahkan field lain sesuai kebutuhan
+      };
+
+      final result = await databases!.updateDocument(
+        databaseId: "6561d15ee70e330ee9fc",
+        collectionId: "6566ba720a806cf878ad",
+        documentId: documentId,
+        data: newData,
+      );
+
+      Get.snackbar("Success", "Your Data Have Been Updated");
     } catch (error) {
       Get.snackbar('Error', 'An error occurred: $error');
     }
   }
 
-  Future<void> deleteData(String documentId) async {
+  Future<void> deleteData(Future userId) async {
+    final documentId = await userId;
+
     try {
       if (databases != null) {
         final result = await databases!.deleteDocument(
@@ -139,11 +115,10 @@ class DatabaseController extends ClientController {
           documentId: documentId,
         );
 
-        if (result.statusCode == 200) {
-          Get.snackbar('Success', 'Data deleted successfully');
-        } else {
-          Get.snackbar('Error', 'Failed to delete data: ${result.body}');
-        }
+        readData(userId);
+        Get.snackbar("Success", "Data Berhasil Dihapus");
+
+        Get.off(ProfileMenu());
       } else {
         Get.snackbar('Error', 'Databases is null');
       }

@@ -4,7 +4,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/app/modules/controllers/account_controller.dart';
 import 'package:flutter_application_1/app/modules/controllers/auth_controller.dart';
-import 'package:flutter_application_1/app/modules/controllers/database_controller.dart';
 import 'package:flutter_application_1/app/modules/service/notification_handler.dart';
 import 'package:flutter_application_1/app/routes/app_pages.dart';
 import 'package:flutter_application_1/firebase_options.dart';
@@ -37,5 +36,5 @@ void main() async {
     ),
   );
   Get.put(AccountController());
-  Get.put(DatabaseController());
+  // Get.put(DatabaseController());
 }

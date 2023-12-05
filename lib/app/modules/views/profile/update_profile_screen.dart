@@ -1,7 +1,11 @@
+// ignore_for_file: must_be_immutable
+
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/app/data/models/user_data.dart';
+import 'package:flutter_application_1/app/modules/controllers/account_controller.dart';
 import 'package:flutter_application_1/app/modules/controllers/database_controller.dart';
 import 'package:flutter_application_1/app/modules/controllers/edit_profile_controller.dart';
 
@@ -15,6 +19,7 @@ class UpdateProfileScreen extends StatelessWidget {
   ImagePicker imagePicker = ImagePicker();
 
   EditProfileController editProfileController = Get.find();
+  final AccountController accountController = Get.put(AccountController());
   final DatabaseController databaseController = Get.put(DatabaseController());
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -32,11 +37,15 @@ class UpdateProfileScreen extends StatelessWidget {
       return emailPattern.hasMatch(value);
     }
 
+    databaseController.readData(accountController.getUserId());
+
     final formKey = GlobalKey<FormState>();
     _nameController.text = databaseController.datax.value.name ?? '';
     _emailController.text = databaseController.datax.value.email ?? '';
     _phoneController.text = databaseController.datax.value.phone ?? '';
     _passwordController.text = databaseController.datax.value.password ?? '';
+
+    final isFormEmpty = _nameController.text.isEmpty;
 
     return Scaffold(
         appBar: AppBar(
@@ -52,7 +61,7 @@ class UpdateProfileScreen extends StatelessWidget {
         ),
         body: SingleChildScrollView(
             child: Container(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             children: [
               Stack(
@@ -233,15 +242,23 @@ class UpdateProfileScreen extends StatelessWidget {
 
                                 try {
                                   // Panggil fungsi createData dari DatabaseController
-                                  await databaseController.createData(userData);
+                                  // await databaseController.createData(userData);
+
+                                  if (isFormEmpty) {
+                                    log("create");
+                                    databaseController.createData(userData,
+                                        accountController.getUserId());
+                                  } else {
+                                    databaseController.updateData(
+                                        accountController.getUserId(),
+                                        userData);
+                                  }
 
                                   // Navigasi ke halaman lain atau lakukan tindakan lainnya
                                   // Contoh: kembali ke halaman sebelumnya
-                                  Get.back();
+                                  // Get.back();
                                 } catch (error) {
-                                  // Tangani kesalahan jika ada
-                                  Get.snackbar('Error',
-                                      'Failed to update profile: $error');
+                                  Get.snackbar("error", error.toString());
                                 }
                               }
                               // if (formKey.currentState!.validate())
@@ -257,6 +274,20 @@ class UpdateProfileScreen extends StatelessWidget {
                               style:
                                   TextStyle(color: Colors.white, fontSize: 18),
                             )),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      InkWell(
+                        onTap: () => databaseController
+                            .deleteData(accountController.getUserId()),
+                        child: const Text(
+                          "Delete Data",
+                          style: TextStyle(
+                              color: Colors.red,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold),
+                        ),
                       )
                     ],
                   )),

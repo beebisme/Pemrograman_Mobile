@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/app/modules/controllers/account_controller.dart';
+import 'package:flutter_application_1/app/modules/controllers/database_controller.dart';
 import 'package:flutter_application_1/app/modules/controllers/news_controller.dart';
 import 'package:flutter_application_1/app/modules/views/home/header_component.dart';
 import 'package:flutter_application_1/app/modules/views/home/menu_component.dart';
@@ -14,6 +16,11 @@ class HomeMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     NewsController newsController = Get.put(NewsController());
+    AccountController accountController = Get.put(AccountController());
+    DatabaseController databaseController = Get.put(DatabaseController());
+
+    databaseController.readData(accountController.getUserId());
+
     var data = newsController.newsList;
     return SingleChildScrollView(
       child: Stack(
