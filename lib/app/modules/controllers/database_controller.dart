@@ -18,6 +18,7 @@ class DatabaseController extends ClientController {
   }
 
   Future<void> createData(UserData userData, Future userId) async {
+    // mengambil userId yg berhasil login
     final documentId = await userId;
 
     try {
@@ -97,6 +98,8 @@ class DatabaseController extends ClientController {
         documentId: documentId,
         data: newData,
       );
+
+      ;
 
       Get.snackbar("Success", "Your Data Have Been Updated");
     } catch (error) {

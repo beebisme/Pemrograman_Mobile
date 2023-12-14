@@ -8,6 +8,7 @@ import 'package:flutter_application_1/app/data/models/user_data.dart';
 import 'package:flutter_application_1/app/modules/controllers/account_controller.dart';
 import 'package:flutter_application_1/app/modules/controllers/database_controller.dart';
 import 'package:flutter_application_1/app/modules/controllers/edit_profile_controller.dart';
+import 'package:flutter_application_1/app/modules/views/profile/profile_menu.dart';
 
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -39,6 +40,7 @@ class UpdateProfileScreen extends StatelessWidget {
 
     databaseController.readData(accountController.getUserId());
 
+// validasi
     final formKey = GlobalKey<FormState>();
     _nameController.text = databaseController.datax.value.name ?? '';
     _emailController.text = databaseController.datax.value.email ?? '';
@@ -248,10 +250,14 @@ class UpdateProfileScreen extends StatelessWidget {
                                     log("create");
                                     databaseController.createData(userData,
                                         accountController.getUserId());
+
+                                    Get.off(ProfileMenu());
                                   } else {
                                     databaseController.updateData(
                                         accountController.getUserId(),
                                         userData);
+
+                                    Get.off(ProfileMenu());
                                   }
 
                                   // Navigasi ke halaman lain atau lakukan tindakan lainnya
@@ -279,8 +285,12 @@ class UpdateProfileScreen extends StatelessWidget {
                         height: 20,
                       ),
                       InkWell(
-                        onTap: () => databaseController
-                            .deleteData(accountController.getUserId()),
+                        onTap: () {
+                          databaseController
+                              .deleteData(accountController.getUserId());
+
+                          Get.off(ProfileMenu());
+                        },
                         child: const Text(
                           "Delete Data",
                           style: TextStyle(
