@@ -50,6 +50,16 @@ class ApiController extends GetxController {
       print("Error: $e");
     }
   }
+
+  Future<Todo> fetchTodo(http.Client client) async {
+    final response = await client
+        .get(Uri.parse('https://jsonplaceholder.typicode.com/todos/5'));
+    if (response.statusCode == 200) {
+      return Todo.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Failed to load album');
+    }
+  }
 }
 
 //All data

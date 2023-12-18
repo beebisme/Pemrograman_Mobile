@@ -27,4 +27,19 @@ class NewsController extends GetxController {
       throw Exception("Request Failed");
     }
   }
+
+  Future<News> fetchNews(http.Client client) async {
+    var response = await client
+        .get(Uri.parse("https://653f54f89e8bd3be29e04cbc.mockapi.io/news"));
+
+    if (response.statusCode == 200) {
+      List<dynamic> jsonData = json.decode(response.body);
+      var res = jsonData[0];
+      News news = News.fromJson(res);
+
+      return news;
+    } else {
+      throw Exception("Request Failed");
+    }
+  }
 }
